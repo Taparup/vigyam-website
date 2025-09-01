@@ -1,0 +1,228 @@
+/* Custom CSS for Vigyam Website */
+
+/* CSS Variables for consistent theming */
+:root {
+  --primary-orange: #f97316;
+  --primary-orange-dark: #ea580c;
+  --gradient-light-start: #f8fafc;
+  --gradient-light-end: #e2e8f0;
+  --gradient-dark-start: #0f172a;
+  --gradient-dark-end: #1e293b;
+}
+
+/* Hero section gradients */
+.hero-gradient-light {
+  background: linear-gradient(135deg, var(--gradient-light-start) 0%, var(--gradient-light-end) 100%);
+}
+
+.dark .hero-gradient-dark {
+  background: linear-gradient(135deg, var(--gradient-dark-start) 0%, var(--gradient-dark-end) 100%);
+}
+
+/* Enhanced card hover effects */
+.card-style {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-style:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.dark .card-style:hover {
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.4), 0 10px 10px -5px rgba(0, 0, 0, 0.2);
+}
+
+/* Course card specific animations */
+.course-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.course-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(249, 115, 22, 0.1), transparent);
+  transition: left 0.5s ease;
+}
+
+.course-card:hover::before {
+  left: 100%;
+}
+
+/* Team card animations */
+.team-card {
+  transition: all 0.3s ease;
+}
+
+.team-card:hover {
+  transform: translateY(-5px) scale(1.02);
+}
+
+.team-card img {
+  transition: all 0.3s ease;
+}
+
+.team-card:hover img {
+  transform: scale(1.1);
+}
+
+/* FAQ Accordion styling */
+.faq-question {
+  transition: all 0.2s ease;
+}
+
+.faq-question:hover {
+  background-color: rgba(249, 115, 22, 0.05);
+}
+
+.dark .faq-question:hover {
+  background-color: rgba(249, 115, 22, 0.1);
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+.dark ::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-orange);
+}
+
+/* Loading animation for buttons */
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+}
+
+.loading {
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* Mobile menu animation */
+#mobile-menu {
+  transition: all 0.3s ease-in-out;
+  transform-origin: top;
+}
+
+#mobile-menu.hidden {
+  transform: scaleY(0);
+  opacity: 0;
+}
+
+#mobile-menu:not(.hidden) {
+  transform: scaleY(1);
+  opacity: 1;
+}
+
+/* Focus styles for accessibility */
+a:focus,
+button:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid var(--primary-orange);
+  outline-offset: 2px;
+}
+
+/* Skip to main content link for accessibility */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--primary-orange);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 1000;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Responsive typography improvements */
+@media (max-width: 640px) {
+  h1 {
+    font-size: 1.5rem;
+  }
+  
+  h2 {
+    font-size: 2rem;
+  }
+  
+  h3 {
+    font-size: 1.75rem;
+  }
+}
+
+/* Print styles */
+@media print {
+  .no-print,
+  header,
+  footer,
+  nav,
+  button {
+    display: none !important;
+  }
+  
+  body {
+    color: black !important;
+    background: white !important;
+  }
+  
+  a {
+    text-decoration: underline !important;
+  }
+}
+
+/* Reduced motion for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-style {
+    border: 2px solid currentColor;
+  }
+  
+  button,
+  a {
+    border: 1px solid currentColor;
+  }
+}
+

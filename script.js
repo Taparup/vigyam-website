@@ -1,0 +1,212 @@
+// Theme Toggle Functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('theme-toggle');
+    const lightIcon = document.getElementById('theme-icon-light');
+    const darkIcon = document.getElementById('theme-icon-dark');
+    const html = document.documentElement;
+
+    // Check for saved theme preference or default to 'light' mode
+    const currentTheme = localStorage.getItem('theme') || 'light';
+    
+    if (currentTheme === 'dark') {
+        html.classList.add('dark');
+        lightIcon.classList.remove('hidden');
+        darkIcon.classList.add('hidden');
+    } else {
+        html.classList.remove('dark');
+        lightIcon.classList.add('hidden');
+        darkIcon.classList.remove('hidden');
+    }
+
+    themeToggle.addEventListener('click', function() {
+        html.classList.toggle('dark');
+        
+        if (html.classList.contains('dark')) {
+            localStorage.setItem('theme', 'dark');
+            lightIcon.classList.remove('hidden');
+            darkIcon.classList.add('hidden');
+        } else {
+            localStorage.setItem('theme', 'light');
+            lightIcon.classList.add('hidden');
+            darkIcon.classList.remove('hidden');
+        }
+    });
+}
+
+// Mobile Menu Toggle
+function initMobileMenu() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('hidden');
+        
+        // Update aria-expanded attribute for accessibility
+        const isExpanded = !mobileMenu.classList.contains('hidden');
+        mobileMenuButton.setAttribute('aria-expanded', isExpanded);
+        
+        // Update button title
+        mobileMenuButton.setAttribute('title', isExpanded ? 'Close mobile menu' : 'Open mobile menu');
+    });
+
+    // Close mobile menu when clicking on links
+    const mobileMenuLinks = mobileMenu.querySelectorAll('a');
+    mobileMenuLinks.forEach(link => {
+        link.addEventListener('click', () => {
+            mobileMenu.classList.add('hidden');
+            mobileMenuButton.setAttribute('aria-expanded', 'false');
+            mobileMenuButton.setAttribute('title', 'Open mobile menu');
+        });
+    });
+}
+
+// FAQ Accordion Functionality
+function initFAQ() {
+    const faqItems = document.querySelectorAll('.faq-item');
+    
+    faqItems.forEach(item => {
+        const question = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+        const icon = question.querySelector('[data-lucide="chevron-down"]');
+        
+        question.addEventListener('click', () => {
+            const isOpen = answer.style.maxHeight && answer.style.maxHeight !== '0px';
+            
+            // Close all other FAQ items
+            faqItems.forEach(otherItem => {
+                if (otherItem !== item) {
+                    const otherAnswer = otherItem.querySelector('.faq-answer');
+                    const otherIcon = otherItem.querySelector('[data-lucide="chevron-down"]');
+                    otherAnswer.style.maxHeight = '0px';
+                    otherIcon.style.transform = 'rotate(0deg)';
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                }
+            });
+            
+            // Toggle current item
+            if (isOpen) {
+                answer.style.maxHeight = '0px';
+                icon.style.transform = 'rotate(0deg)';
+                question.setAttribute('aria-expanded', 'false');
+            } else {
+                answer.style.maxHeight = answer.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+                question.setAttribute('aria-expanded', 'true');
+            }
+        });
+        
+        // Initialize aria-expanded attribute
+        question.setAttribute('aria-expanded', 'false');
+    });
+}
+
+// Smooth Scrolling for Anchor Links
+function initSmoothScrolling() {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                const headerHeight = document.querySelector('header').offsetHeight;
+                const targetPosition = target.offsetTop - headerHeight - 20;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+            }
+        });
+    });
+}
+
+// Fade-in Animation on Scroll
+function initScrollAnimations() {
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
+            }
+        });
+    }, observerOptions);
+
+    document.querySelectorAll('.fade-in-section').forEach(section => {
+        section.style.opacity = '0';
+        section.style.transform = 'translateY(30px)';
+        section.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+        observer.observe(section);
+    });
+}
+
+// Contact Form Handling
+function initContactForm() {
+    const contactForm = document.getElementById('contact-form');
+    
+    contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        // Get form data
+        const formData = new FormData(contactForm);
+        const name = formData.get('name');
+        const email = formData.get('email');
+        const message = formData.get('message');
+        
+        // Simple validation
+        if (!name || !email || !message) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        
+        if (!isValidEmail(email)) {
+            alert('Please enter a valid email address.');
+            return;
+        }
+        
+        // Simulate form submission
+        const submitButton = contactForm.querySelector('button[type="submit"]');
+        const originalText = submitButton.textContent;
+        
+        submitButton.textContent = 'Sending...';
+        submitButton.disabled = true;
+        
+        // Simulate API call
+        setTimeout(() => {
+            alert('Thank you for your message! We\'ll get back to you soon.');
+            contactForm.reset();
+            submitButton.textContent = originalText;
+            submitButton.disabled = false;
+        }, 1500);
+    });
+}
+
+// Email validation helper
+function isValidEmail(email) {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+}
+
+// Initialize Lucide Icons
+function initLucideIcons() {
+    if (typeof lucide !== 'undefined') {
+        lucide.createIcons();
+    } else {
+        console.warn('Lucide icons library not loaded');
+    }
+}
+
+// Initialize all functionality when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+    initThemeToggle();
+    initMobileMenu();
+    initFAQ();
+    initSmoothScrolling();
+    initScrollAnimations();
+    initContactForm();
+    initLucideIcons();
+});
+
