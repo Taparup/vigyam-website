@@ -594,18 +594,16 @@ textarea:focus {
   background: linear-gradient(90deg, var(--primary-orange-light), var(--accent-purple));
 }
 
-/* Themed navbar surface with gradient + subtle texture */
+/* Simplified saffron-tinted navbar surface (no texture/mirror) */
 .nav-surface {
-  background: linear-gradient(135deg, rgba(255,153,51,0.10), rgba(255,255,255,0.50));
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
-  background-size: 6px 6px;
+  background: rgba(255,153,51,0.08);
+  -webkit-backdrop-filter: blur(8px);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
 }
-
 .dark .nav-surface {
-  background: linear-gradient(135deg, rgba(17,24,39,0.78), rgba(17,24,39,0.58));
-  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+  background: rgba(17,24,39,0.78);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.25);
 }
 
 /* Rounded sliding selector behind nav items */
@@ -693,4 +691,12 @@ p { line-height: 1.7; }
 .btn-primary::before {
   content: none !important;
 }
+
+/* Ensure section anchors align well under fixed header */
+#services, #courses, #testimonials, #for-business, #faq, #contact {
+  scroll-margin-top: 90px;
+}
+
+/* Allow slight vertical offset control for selector */
+.nav-selector { --selector-offset-y: 2px; }
 

@@ -113,12 +113,10 @@ function initSmoothScrolling() {
             e.preventDefault();
             const header = document.querySelector('header');
             const headerHeight = header ? header.offsetHeight : 0;
-            const targetPosition = target.offsetTop - headerHeight - 20;
-            
-            window.scrollTo({
-                top: Math.max(targetPosition, 0),
-                behavior: 'smooth'
-            });
+            const rect = target.getBoundingClientRect();
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            const targetY = rect.top + scrollTop - headerHeight - 20; // small breathing room
+            window.scrollTo({ top: Math.max(targetY, 0), behavior: 'smooth' });
         });
     });
 }
