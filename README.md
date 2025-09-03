@@ -1,6 +1,6 @@
-# Vigyam - Ed-Tech Website
+# Vigyam GBK - Ed-Tech Website
 
-A modern, responsive website for Vigyam, an Ed-Tech start-up dedicated to providing top-tier training in in-demand technologies.
+A modern, responsive website for VIGYAM GBK, an Ed-Tech start-up dedicated to providing top-tier training in in-demand technologies.
 
 ## 🚀 Live Demo
 
@@ -127,7 +127,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-**Vigyam Ed-Tech**
+**VIGYAM GBK**
 - Website: [www.vigyamgbk.co.in](https://www.vigyamgbk.co.in/)
 - Email: vigyamgbk@gmail.com
 - Phone: +91 9862787401

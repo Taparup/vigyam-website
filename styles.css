@@ -788,3 +788,13 @@ p { line-height: 1.7; }
   .matrix-animate { animation: none !important; }
 }
 
+/* Global smoothness */
+html, body {
+  transition: background-color 200ms ease, color 200ms ease;
+}
+img { image-rendering: -webkit-optimize-contrast; backface-visibility: hidden; transform: translateZ(0); }
+
+/* Improve header brand hover */
+header a[aria-label="VIGYAM GBK home"] span { transition: color 160ms ease; }
+header a[aria-label="VIGYAM GBK home"]:hover span { color: var(--primary-orange); }
+
