@@ -700,3 +700,42 @@ p { line-height: 1.7; }
 /* Allow slight vertical offset control for selector */
 .nav-selector { --selector-offset-y: 2px; }
 
+/* Hero background image with matrix-style animation */
+.hero-image {
+  position: absolute;
+  inset: 0;
+  background-image: url('assets/hero-matrix.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+  filter: saturate(1.1) contrast(1.05) brightness(0.95);
+}
+
+/* Animated color shifting for matrix effect */
+.matrix-animate {
+  animation: matrixHue 12s ease-in-out infinite;
+}
+
+@keyframes matrixHue {
+  0% { filter: hue-rotate(0deg) saturate(1.1) contrast(1.05) brightness(0.95); }
+  50% { filter: hue-rotate(-20deg) saturate(1.2) contrast(1.1) brightness(1.0); }
+  100% { filter: hue-rotate(0deg) saturate(1.1) contrast(1.05) brightness(0.95); }
+}
+
+/* Dark mode: cooler tones and a touch darker */
+.dark .hero-image {
+  filter: hue-rotate(-30deg) saturate(1.1) contrast(1.1) brightness(0.85);
+}
+.dark .matrix-animate {
+  animation: matrixHueDark 12s ease-in-out infinite;
+}
+@keyframes matrixHueDark {
+  0% { filter: hue-rotate(-30deg) saturate(1.1) contrast(1.1) brightness(0.85); }
+  50% { filter: hue-rotate(-50deg) saturate(1.2) contrast(1.15) brightness(0.8); }
+  100% { filter: hue-rotate(-30deg) saturate(1.1) contrast(1.1) brightness(0.85); }
+}
+
+/* Ensure hero content sits above image */
+#home > .container { position: relative; z-index: 2; }
+
