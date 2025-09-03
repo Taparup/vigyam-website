@@ -212,31 +212,38 @@ function initNavIndicator() {
     const selector = document.getElementById('nav-selector');
     if (!nav || !selector) return;
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+
     function setSelectorToLink(link) {
-        const linkRect = link.getBoundingClientRect();
-        const navRect = nav.getBoundingClientRect();
-        const pillPaddingX = 12;
-        const pillHeight = selector.offsetHeight || 36;
-        const left = linkRect.left - navRect.left - pillPaddingX / 2;
-        const width = linkRect.width + pillPaddingX;
-        const top = (linkRect.top - navRect.top) + (linkRect.height - pillHeight) / 2;
+        const pillPaddingX = 12; // horizontal breathing room
+        const linkLeft = link.offsetLeft;
+        const linkTop = link.offsetTop;
+        const linkWidth = link.offsetWidth;
+        const linkHeight = link.offsetHeight;
+        const width = linkWidth + pillPaddingX;
+        const left = linkLeft - pillPaddingX / 2;
+        // Match selector height to link height for perfect vertical alignment
+        selector.style.height = linkHeight + 'px';
         selector.style.left = left + 'px';
         selector.style.width = width + 'px';
-        selector.style.top = top + 'px';
+        selector.style.top = linkTop + 'px';
         selector.style.display = 'block';
     }
+
     function initPosition() {
-        const linksArr = Array.from(nav.querySelectorAll('a[href^="#"]'));
-        const active = linksArr.find(l => l.classList.contains('active')) || linksArr[0];
+        const active = links.find(l => l.classList.contains('active')) || links[0];
         if (active) setSelectorToLink(active);
     }
+
+    // Click handling
     links.forEach(link => {
         link.addEventListener('click', () => {
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            setTimeout(() => setSelectorToLink(link), 50);
+            setTimeout(() => setSelectorToLink(link), 0);
         });
     });
+
+    // Scroll spy
     const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
     const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -251,18 +258,20 @@ function initNavIndicator() {
         }
     }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
     sections.forEach(sec => observer.observe(sec));
+
+    // Initialize and keep in sync on resize
     initPosition();
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {
-            // re-evaluate on breakpoint change
             if (window.matchMedia('(max-width: 767px)').matches) {
-                if (selector) selector.style.display = 'none';
+                selector.style.display = 'none';
                 return;
             }
-            initPosition();
-        }, 120);
+            const active = links.find(l => l.classList.contains('active')) || links[0];
+            if (active) setSelectorToLink(active);
+        }, 100);
     });
 }
 
