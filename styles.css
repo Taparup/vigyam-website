@@ -13,7 +13,7 @@
   --accent-purple: #8b5cf6;
   --accent-green: #10b981;
   --accent-pink: #ec4899;
-}
+t}
 
 /* Enhanced Hero section gradients */
 .hero-gradient-light {
@@ -659,4 +659,22 @@ textarea:focus {
 .dark .header-stuck {
   box-shadow: 0 8px 30px rgba(0,0,0,0.35);
 }
+
+/* Professional typography tweaks */
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  letter-spacing: -0.02em;
+}
+
+h1 { line-height: 1.1; }
+h2 { line-height: 1.15; }
+h3 { line-height: 1.2; }
+
+p { line-height: 1.7; }
+
+.small-caps { font-variant-caps: all-small-caps; letter-spacing: 0.06em; }
 

@@ -213,25 +213,28 @@ function initNavIndicator() {
     function setSelectorToLink(link) {
         const linkRect = link.getBoundingClientRect();
         const navRect = nav.getBoundingClientRect();
-        const left = linkRect.left - navRect.left - 8; // padding compensation
-        const width = linkRect.width + 16; // pill padding
+        const pillPaddingX = 12; // horizontal padding around the link
+        const pillHeight = selector.offsetHeight || 36;
+        const left = linkRect.left - navRect.left - pillPaddingX / 2;
+        const width = linkRect.width + pillPaddingX;
+        const top = (linkRect.top - navRect.top) + (linkRect.height - pillHeight) / 2;
         selector.style.left = left + 'px';
         selector.style.width = width + 'px';
-        selector.style.display = 'block';
-        // vertically center
-        const top = (navRect.height / 2) - (selector.offsetHeight / 2);
         selector.style.top = top + 'px';
+        selector.style.display = 'block';
     }
 
     // Initialize to first link
     function initPosition() {
-        const active = links[0];
+        const active = links.find(l => l.classList.contains('active')) || links[0];
         if (active) setSelectorToLink(active);
     }
 
     // Click handling
     links.forEach(link => {
         link.addEventListener('click', () => {
+            links.forEach(l => l.classList.remove('active'));
+            link.classList.add('active');
             setTimeout(() => setSelectorToLink(link), 50);
         });
     });
@@ -248,7 +251,11 @@ function initNavIndicator() {
         if (visible) {
             const id = '#' + visible.target.id;
             const activeLink = links.find(l => l.getAttribute('href') === id);
-            if (activeLink) setSelectorToLink(activeLink);
+            if (activeLink) {
+                links.forEach(l => l.classList.remove('active'));
+                activeLink.classList.add('active');
+                setSelectorToLink(activeLink);
+            }
         }
     }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
 
@@ -256,7 +263,11 @@ function initNavIndicator() {
 
     // On load and resize
     initPosition();
-    window.addEventListener('resize', initPosition);
+    let resizeTimeout;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(initPosition, 100);
+    });
 }
 
 // Sticky header shadow for smoothness on scroll
