@@ -678,3 +678,25 @@ p { line-height: 1.7; }
 
 .small-caps { font-variant-caps: all-small-caps; letter-spacing: 0.06em; }
 
+/* Mobile compatibility for navbar and buttons */
+@media (max-width: 767px) {
+  /* Hide desktop nav selector on small screens */
+  .nav-selector { display: none !important; }
+
+  /* Larger tap targets for mobile menu links */
+  #mobile-menu a {
+    padding: 0.75rem 0.25rem;
+    font-size: 1.05rem;
+  }
+
+  /* Slightly larger mobile hamburger touch target */
+  #mobile-menu-button { padding: 0.5rem; }
+
+  /* Make primary CTAs full-width on small screens */
+  .btn-primary.btn-rounded { width: 100%; }
+  .glass-effect.btn-rounded { width: 100%; }
+
+  /* Reduce hero bubble density perception by scaling down */
+  .bubbles span { filter: blur(1px); opacity: 0.85; }
+}
+

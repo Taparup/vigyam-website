@@ -37,25 +37,27 @@ function initThemeToggle() {
 function initMobileMenu() {
     const mobileMenuButton = document.getElementById('mobile-menu-button');
     const mobileMenu = document.getElementById('mobile-menu');
+    if (!mobileMenuButton || !mobileMenu) return;
+
+    function lockScroll(lock) {
+        document.body.style.overflow = lock ? 'hidden' : '';
+    }
 
     mobileMenuButton.addEventListener('click', function() {
         mobileMenu.classList.toggle('hidden');
-        
-        // Update aria-expanded attribute for accessibility
         const isExpanded = !mobileMenu.classList.contains('hidden');
         mobileMenuButton.setAttribute('aria-expanded', isExpanded);
-        
-        // Update button title
         mobileMenuButton.setAttribute('title', isExpanded ? 'Close mobile menu' : 'Open mobile menu');
+        lockScroll(isExpanded);
     });
 
-    // Close mobile menu when clicking on links
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     mobileMenuLinks.forEach(link => {
         link.addEventListener('click', () => {
             mobileMenu.classList.add('hidden');
             mobileMenuButton.setAttribute('aria-expanded', 'false');
             mobileMenuButton.setAttribute('title', 'Open mobile menu');
+            lockScroll(false);
         });
     });
 }
@@ -205,15 +207,15 @@ function initLucideIcons() {
 
 // Sliding Nav Indicator
 function initNavIndicator() {
+    if (window.matchMedia('(max-width: 767px)').matches) return; // skip on mobile
     const nav = document.querySelector('header nav.nav-links');
     const selector = document.getElementById('nav-selector');
     if (!nav || !selector) return;
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
-
     function setSelectorToLink(link) {
         const linkRect = link.getBoundingClientRect();
         const navRect = nav.getBoundingClientRect();
-        const pillPaddingX = 12; // horizontal padding around the link
+        const pillPaddingX = 12;
         const pillHeight = selector.offsetHeight || 36;
         const left = linkRect.left - navRect.left - pillPaddingX / 2;
         const width = linkRect.width + pillPaddingX;
@@ -223,14 +225,11 @@ function initNavIndicator() {
         selector.style.top = top + 'px';
         selector.style.display = 'block';
     }
-
-    // Initialize to first link
     function initPosition() {
-        const active = links.find(l => l.classList.contains('active')) || links[0];
+        const linksArr = Array.from(nav.querySelectorAll('a[href^="#"]'));
+        const active = linksArr.find(l => l.classList.contains('active')) || linksArr[0];
         if (active) setSelectorToLink(active);
     }
-
-    // Click handling
     links.forEach(link => {
         link.addEventListener('click', () => {
             links.forEach(l => l.classList.remove('active'));
@@ -238,16 +237,9 @@ function initNavIndicator() {
             setTimeout(() => setSelectorToLink(link), 50);
         });
     });
-
-    // Scroll spy via IntersectionObserver
-    const sections = links
-        .map(l => document.querySelector(l.getAttribute('href')))
-        .filter(Boolean);
-
+    const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
     const observer = new IntersectionObserver((entries) => {
-        const visible = entries
-            .filter(e => e.isIntersecting)
-            .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
         if (visible) {
             const id = '#' + visible.target.id;
             const activeLink = links.find(l => l.getAttribute('href') === id);
@@ -258,15 +250,19 @@ function initNavIndicator() {
             }
         }
     }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
-
     sections.forEach(sec => observer.observe(sec));
-
-    // On load and resize
     initPosition();
     let resizeTimeout;
     window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
-        resizeTimeout = setTimeout(initPosition, 100);
+        resizeTimeout = setTimeout(() => {
+            // re-evaluate on breakpoint change
+            if (window.matchMedia('(max-width: 767px)').matches) {
+                if (selector) selector.style.display = 'none';
+                return;
+            }
+            initPosition();
+        }, 120);
     });
 }
 
