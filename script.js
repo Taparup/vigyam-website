@@ -218,21 +218,17 @@ function initNavIndicator() {
     }
 
     function setSelectorToLink(link) {
-        const pillPaddingX = 12; // add small breathing room
-        const navPaddingLeft = getComputedNumber(nav, 'paddingLeft');
-        const navPaddingTop = getComputedNumber(nav, 'paddingTop');
+        const pillPaddingX = 12;
+        const verticalOffset = 2; // lower the pill slightly
         const linkMarginLeft = getComputedNumber(link, 'marginLeft');
         const linkMarginTop = getComputedNumber(link, 'marginTop');
         const linkLeft = link.offsetLeft + linkMarginLeft;
         const linkTop = link.offsetTop + linkMarginTop;
         const linkWidth = link.offsetWidth;
         const linkHeight = link.offsetHeight;
-        const left = linkLeft - pillPaddingX / 2;
-        const width = linkWidth + pillPaddingX;
-        const top = linkTop; // exact match
-        selector.style.left = left + 'px';
-        selector.style.width = width + 'px';
-        selector.style.top = top + 'px';
+        selector.style.left = (linkLeft - pillPaddingX / 2) + 'px';
+        selector.style.width = (linkWidth + pillPaddingX) + 'px';
+        selector.style.top = (linkTop + verticalOffset) + 'px';
         selector.style.height = linkHeight + 'px';
         selector.style.display = 'block';
     }

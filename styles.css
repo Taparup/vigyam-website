@@ -66,27 +66,16 @@
   50% { transform: translateY(-20px) rotate(180deg); }
 }
 
+/* Remove floating emoji/mirror effects in hero */
 .hero-gradient-light::after,
 .dark .hero-gradient-dark::after {
-  content: '🎓';
-  position: absolute;
-  top: 20%;
-  right: 10%;
-  font-size: 4rem;
-  opacity: 0.1;
-  animation: float 6s ease-in-out infinite;
-  z-index: 1;
+  content: none;
 }
-
 .hero-gradient-light::before {
-  content: '💻';
-  position: absolute;
-  bottom: 20%;
-  left: 10%;
-  font-size: 3rem;
-  opacity: 0.1;
-  animation: float 8s ease-in-out infinite reverse;
-  z-index: 1;
+  /* keep overlay only, no emoji */
+}
+.dark .hero-gradient-dark::before {
+  /* keep overlay only, no emoji */
 }
 
 /* Enhanced card hover effects */
@@ -308,7 +297,7 @@
 }
 
 .social-proof-item:hover {
-  opacity: 1;
+    opacity: 1;
   transform: scale(1.1);
   color: var(--primary-orange);
 }
@@ -607,7 +596,7 @@ textarea:focus {
 
 /* Themed navbar surface with gradient + subtle texture */
 .nav-surface {
-  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.45));
+  background: linear-gradient(135deg, rgba(255,153,51,0.10), rgba(255,255,255,0.50));
   -webkit-backdrop-filter: blur(10px);
   backdrop-filter: blur(10px);
   background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
@@ -615,7 +604,7 @@ textarea:focus {
 }
 
 .dark .nav-surface {
-  background: linear-gradient(135deg, rgba(17,24,39,0.75), rgba(17,24,39,0.55));
+  background: linear-gradient(135deg, rgba(17,24,39,0.78), rgba(17,24,39,0.58));
   background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
 }
 
@@ -625,14 +614,14 @@ textarea:focus {
   /* JS sets exact top based on link position */
   height: auto;
   border-radius: 9999px;
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(59, 130, 246, 0.15));
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.22), rgba(255, 111, 0, 0.22));
   box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) inset, 0 2px 6px rgba(0,0,0,0.06);
   transition: left 220ms cubic-bezier(0.4, 0, 0.2, 1), width 220ms cubic-bezier(0.4, 0, 0.2, 1), top 220ms cubic-bezier(0.4, 0, 0.2, 1), height 220ms cubic-bezier(0.4, 0, 0.2, 1);
   z-index: 0;
 }
 
 .dark .nav-selector {
-  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(139, 92, 246, 0.18));
+  background: linear-gradient(135deg, rgba(255, 153, 51, 0.26), rgba(139, 92, 246, 0.16));
   box-shadow: 0 8px 20px rgba(2,6,23,0.35) inset, 0 2px 10px rgba(0,0,0,0.25);
 }
 
@@ -697,5 +686,11 @@ p { line-height: 1.7; }
 
   /* Reduce hero bubble density perception by scaling down */
   .bubbles span { filter: blur(1px); opacity: 0.85; }
+}
+
+/* Disable shiny sweep (mirror-like) effects */
+.card-style::before,
+.btn-primary::before {
+  content: none !important;
 }
 
