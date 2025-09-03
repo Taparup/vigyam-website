@@ -4,7 +4,7 @@ A modern, responsive website for Vigyam, an Ed-Tech start-up dedicated to provid
 
 ## 🚀 Live Demo
 
-[View Live Website](https://your-username.github.io/vigyam-website) *(Update with your actual GitHub Pages URL)*
+[View Live Website](https://taparup.github.io/vigyam-website/)
 
 ## ✨ Features
 
@@ -128,9 +128,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## 📞 Contact
 
 **Vigyam Ed-Tech**
-- Website: [vigyam.com](https://vigyam.com) *(Update with actual domain)*
-- Email: contact@vigyam.com *(Update with actual email)*
-- Phone: +91-XXXXXXXXXX *(Update with actual phone)*
+- Website: [www.vigyamgbk.co.in](https://www.vigyamgbk.co.in/)
+- Email: vigyamgbk@gmail.com
+- Phone: +91 9862787401
+- Address: House No. C-44, Crescent Residency, Sehore, Madhya Pradesh - 466001
 
 ## 🙏 Acknowledgments
 

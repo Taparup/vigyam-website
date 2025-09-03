@@ -78,7 +78,7 @@ function initFAQ() {
                     const otherAnswer = otherItem.querySelector('.faq-answer');
                     const otherIcon = otherItem.querySelector('[data-lucide="chevron-down"]');
                     otherAnswer.style.maxHeight = '0px';
-                    otherIcon.style.transform = 'rotate(0deg)';
+                    if (otherIcon) otherIcon.style.transform = 'rotate(0deg)';
                     otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
                 }
             });
@@ -86,11 +86,11 @@ function initFAQ() {
             // Toggle current item
             if (isOpen) {
                 answer.style.maxHeight = '0px';
-                icon.style.transform = 'rotate(0deg)';
+                if (icon) icon.style.transform = 'rotate(0deg)';
                 question.setAttribute('aria-expanded', 'false');
             } else {
                 answer.style.maxHeight = answer.scrollHeight + 'px';
-                icon.style.transform = 'rotate(180deg)';
+                if (icon) icon.style.transform = 'rotate(180deg)';
                 question.setAttribute('aria-expanded', 'true');
             }
         });
@@ -104,17 +104,19 @@ function initFAQ() {
 function initSmoothScrolling() {
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (!href || href === '#') return;
+            const target = document.querySelector(href);
+            if (!target) return;
             e.preventDefault();
-            const target = document.querySelector(this.getAttribute('href'));
-            if (target) {
-                const headerHeight = document.querySelector('header').offsetHeight;
-                const targetPosition = target.offsetTop - headerHeight - 20;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-            }
+            const header = document.querySelector('header');
+            const headerHeight = header ? header.offsetHeight : 0;
+            const targetPosition = target.offsetTop - headerHeight - 20;
+            
+            window.scrollTo({
+                top: Math.max(targetPosition, 0),
+                behavior: 'smooth'
+            });
         });
     });
 }
@@ -146,6 +148,7 @@ function initScrollAnimations() {
 // Contact Form Handling
 function initContactForm() {
     const contactForm = document.getElementById('contact-form');
+    if (!contactForm) return;
     
     contactForm.addEventListener('submit', function(e) {
         e.preventDefault();
@@ -154,11 +157,12 @@ function initContactForm() {
         const formData = new FormData(contactForm);
         const name = formData.get('name');
         const email = formData.get('email');
+        const phone = formData.get('phone');
         const message = formData.get('message');
         
         // Simple validation
         if (!name || !email || !message) {
-            alert('Please fill in all fields.');
+            alert('Please fill in all required fields.');
             return;
         }
         
@@ -199,6 +203,79 @@ function initLucideIcons() {
     }
 }
 
+// Sliding Nav Indicator
+function initNavIndicator() {
+    const nav = document.querySelector('header nav');
+    const indicator = document.getElementById('nav-indicator');
+    if (!nav || !indicator) return;
+    const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
+
+    function setIndicatorToLink(link) {
+        const rect = link.getBoundingClientRect();
+        const navRect = nav.getBoundingClientRect();
+        indicator.style.left = (rect.left - navRect.left) + 'px';
+        indicator.style.width = rect.width + 'px';
+    }
+
+    // Click handling
+    links.forEach(link => {
+        link.addEventListener('click', () => {
+            setTimeout(() => setIndicatorToLink(link), 50);
+        });
+    });
+
+    // Scroll spy via IntersectionObserver
+    const sections = links
+        .map(l => document.querySelector(l.getAttribute('href')))
+        .filter(Boolean);
+
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter(e => e.isIntersecting)
+            .sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (visible) {
+            const id = '#' + visible.target.id;
+            const activeLink = links.find(l => l.getAttribute('href') === id);
+            if (activeLink) setIndicatorToLink(activeLink);
+        }
+    }, { root: null, rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+
+    sections.forEach(sec => observer.observe(sec));
+
+    // On load and resize
+    function initPosition() {
+        const current = links[0];
+        if (current) setIndicatorToLink(current);
+    }
+    initPosition();
+    window.addEventListener('resize', initPosition);
+}
+
+// Bubble animation generator
+function initBubbles() {
+    const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const containers = document.querySelectorAll('.bubbles');
+    if (containers.length === 0) return;
+    
+    containers.forEach(container => {
+        if (reduceMotion) return; // Respect reduced motion
+        // Generate bubbles
+        for (let i = 0; i < 16; i++) {
+            const bubble = document.createElement('span');
+            const size = Math.floor(Math.random() * 16) + 8; // 8-24px
+            const left = Math.random() * 100; // percent
+            const delay = Math.random() * 8; // seconds
+            const duration = 8 + Math.random() * 8; // 8-16s
+            bubble.style.left = left + '%';
+            bubble.style.width = size + 'px';
+            bubble.style.height = size + 'px';
+            bubble.style.animationDelay = delay + 's';
+            bubble.style.animationDuration = duration + 's';
+            container.appendChild(bubble);
+        }
+    });
+}
+
 // Initialize all functionality when DOM is loaded
 document.addEventListener('DOMContentLoaded', function() {
     initThemeToggle();
@@ -208,5 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initScrollAnimations();
     initContactForm();
     initLucideIcons();
+    initNavIndicator();
+    initBubbles();
 });
 

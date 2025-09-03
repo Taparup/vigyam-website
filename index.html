@@ -3,7 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Vigyam - An Ed-Tech Start-Up</title>
+    <meta name="description" content="Vigyam - Leading Ed-Tech start-up in Sehore, Madhya Pradesh. Offering courses in Python, C++, Data Science, Full Stack Web Development, Digital Marketing & more. Contact us at +91 9862787401 or vigyamgbk@gmail.com">
+    <meta name="keywords" content="Vigyam, Ed-Tech, Python Programming, C++, Data Science, Web Development, Digital Marketing, Sehore, Madhya Pradesh, Online Courses, IT Training">
+    <meta name="author" content="Vigyam Ed-Tech">
+    <meta name="robots" content="index, follow">
+    <title>Vigyam - Leading Ed-Tech Start-Up in Sehore, MP | Python, Web Dev & More</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🎓</text></svg>">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="Vigyam - Leading Ed-Tech Start-Up in Sehore, MP">
+    <meta property="og:description" content="Offering courses in Python, C++, Data Science, Full Stack Web Development, Digital Marketing & more. Contact us at +91 9862787401">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.vigyamgbk.co.in">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Vigyam - Leading Ed-Tech Start-Up">
+    <meta name="twitter:description" content="Quality education in Python, Web Development, Data Science & more. Located in Sehore, Madhya Pradesh.">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&display=swap" rel="stylesheet">
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -15,17 +34,18 @@
     <header class="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-slate-200 dark:border-gray-800">
         <div class="container mx-auto px-6 py-4 flex justify-between items-center">
             <h1 class="text-2xl font-bold">Vigy<span class="text-orange-500">am</span></h1>
-            <nav class="hidden md:flex items-center space-x-8">
+            <nav class="hidden md:flex items-center space-x-8 relative">
                 <a href="#services" class="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-500 transition">Services</a>
                 <a href="#courses" class="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-500 transition">Courses</a>
                 <a href="#about" class="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-500 transition">About Us</a>
                 <a href="#contact" class="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-500 transition">Contact</a>
-                <button id="theme-toggle" class="ml-4 p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-gray-700 transition">
+                <div id="nav-indicator" class="nav-indicator" style="left:0;width:0;"></div>
+                <button id="theme-toggle" class="ml-4 p-2 rounded-full text-slate-600 dark:text-slate-300 hover:bg-slate-200 dark:hover:bg-gray-700 transition" aria-label="Toggle dark mode" title="Toggle dark mode">
                     <svg id="theme-icon-light" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" /></svg>
                     <svg id="theme-icon-dark" xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 hidden" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" /></svg>
                 </button>
             </nav>
-            <button id="mobile-menu-button" class="md:hidden">
+            <button id="mobile-menu-button" class="md:hidden" aria-label="Toggle mobile menu" title="Toggle mobile menu">
                  <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
                 </svg>
@@ -44,16 +64,28 @@
         <!-- Hero Section -->
         <section id="home" class="relative min-h-screen flex items-center justify-center text-center overflow-hidden pt-20 hero-gradient-light dark:hero-gradient-dark">
             <div class="container mx-auto px-6 z-10">
-                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-4">
-                    Your Gateway to a Future in Tech <br class="hidden md:block" /> <span class="text-orange-500">Learning | Skilling | Earning</span>
+                <div class="mb-8">
+                    <div class="inline-block p-4 bg-white/10 dark:bg-black/20 rounded-full backdrop-blur-sm mb-6">
+                        <span class="text-4xl">🚀</span>
+                    </div>
+                </div>
+                <h2 class="text-4xl md:text-6xl font-extrabold leading-tight mb-6 text-white">
+                    Your Gateway to a Future in Tech <br class="hidden md:block" /> 
+                    <span class="gradient-text">Learning | Skilling | Earning</span>
                 </h2>
-                <p class="text-lg md:text-xl text-slate-600 dark:text-slate-400 max-w-3xl mx-auto mb-8">
+                <p class="text-lg md:text-xl text-white/90 max-w-3xl mx-auto mb-8">
                     We are an Ed-Tech start-up dedicated to providing top-tier training in the most in-demand technologies, paving your way to a successful career.
                 </p>
-                <a href="#courses" class="bg-orange-500 text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition transform hover:scale-105">
-                    Explore Courses
-                </a>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+                    <a href="#courses" class="btn-primary btn-rounded text-white font-semibold px-8 py-4 rounded-lg text-lg shadow-lg">
+                        Explore Courses
+                    </a>
+                    <a href="#contact" class="glass-effect btn-rounded text-white font-semibold px-8 py-4 rounded-lg text-lg border border-white/20 hover:bg-white/10 transition-all duration-300">
+                        Get Started
+                    </a>
+                </div>
             </div>
+            <div class="bubbles" aria-hidden="true"></div>
         </section>
 
         <!-- Social Proof Section -->
@@ -73,26 +105,29 @@
         <!-- Services Section -->
         <section id="services" class="py-20">
             <div class="container mx-auto px-6 text-center fade-in-section">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">What We Offer</h3>
-                <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">Our ecosystem is designed to support you at every step of your career journey.</p>
+                <div class="mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">What We Offer</h3>
+                    <div class="section-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Our ecosystem is designed to support you at every step of your career journey.</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    <div class="card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="p-3 inline-block bg-orange-500/10 rounded-lg mb-4">
-                           <i data-lucide="book-marked" class="text-orange-500"></i>
+                    <div class="service-card card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
+                         <div class="p-4 inline-block bg-gradient-to-br from-orange-500/20 to-blue-500/20 rounded-xl mb-6">
+                           <i data-lucide="book-marked" class="text-orange-500 w-8 h-8"></i>
                         </div>
                         <h4 class="text-2xl font-semibold mb-3">Comprehensive Courses</h4>
                         <p class="text-slate-600 dark:text-slate-400">Master in-demand skills with our expert-led courses, featuring hands-on projects and real-world applications.</p>
                     </div>
-                    <div class="card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                        <div class="p-3 inline-block bg-orange-500/10 rounded-lg mb-4">
-                           <i data-lucide="wrench" class="text-orange-500"></i>
+                    <div class="service-card card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
+                        <div class="p-4 inline-block bg-gradient-to-br from-green-500/20 to-purple-500/20 rounded-xl mb-6">
+                           <i data-lucide="wrench" class="text-green-500 w-8 h-8"></i>
                         </div>
                         <h4 class="text-2xl font-semibold mb-3">Hands-on Workshops</h4>
                         <p class="text-slate-600 dark:text-slate-400">Participate in intensive workshops designed to solve practical problems and accelerate your learning.</p>
                     </div>
-                    <div class="card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                        <div class="p-3 inline-block bg-orange-500/10 rounded-lg mb-4">
-                           <i data-lucide="briefcase" class="text-orange-500"></i>
+                    <div class="service-card card-style p-8 rounded-xl text-left bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800 transition duration-300">
+                        <div class="p-4 inline-block bg-gradient-to-br from-blue-500/20 to-pink-500/20 rounded-xl mb-6">
+                           <i data-lucide="briefcase" class="text-blue-500 w-8 h-8"></i>
                         </div>
                         <h4 class="text-2xl font-semibold mb-3">Internship & Placement</h4>
                         <p class="text-slate-600 dark:text-slate-400">We bridge the gap between education and career with internship opportunities and dedicated placement assistance.</p>
@@ -104,46 +139,91 @@
         <!-- Our Courses Section -->
         <section id="courses" class="py-20 bg-slate-50 dark:bg-gray-950">
             <div class="container mx-auto px-6 text-center fade-in-section">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">Our Courses</h3>
-                <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">Explore our catalog of courses designed for the tech leaders of tomorrow.</p>
+                <div class="mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Our Courses</h3>
+                    <div class="section-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Explore our catalog of courses designed for the tech leaders of tomorrow.</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                        <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">Python Programming</h4>
-                            <span class="bg-orange-100 text-orange-600 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-orange-900/50 dark:text-orange-400">Popular</span>
+                        <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-orange-500/20 to-red-500/20 rounded-lg">
+                                <span class="text-2xl">🐍</span>
+                            </div>
+                            <span class="bg-gradient-to-r from-orange-500 to-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">Popular</span>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Build a solid foundation in one of the world's most popular programming languages.</p>
+                        <h4 class="text-xl font-semibold mb-3">Python Programming</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Build a solid foundation in one of the world's most popular programming languages.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>8 Weeks</span>
+                        </div>
                     </div>
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">C & C++</h4>
+                         <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-lg">
+                                <span class="text-2xl">⚡</span>
+                            </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Master the fundamentals of systems programming and object-oriented principles.</p>
+                        <h4 class="text-xl font-semibold mb-3">C & C++</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Master the fundamentals of systems programming and object-oriented principles.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>10 Weeks</span>
+                        </div>
                     </div>
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">Data Science</h4>
-                            <span class="bg-green-100 text-green-600 text-xs font-semibold px-2.5 py-0.5 rounded-full dark:bg-green-900/50 dark:text-green-400">High Demand</span>
+                         <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-green-500/20 to-emerald-500/20 rounded-lg">
+                                <span class="text-2xl">📊</span>
+                            </div>
+                            <span class="bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs font-semibold px-3 py-1 rounded-full">High Demand</span>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Learn to analyze data, build predictive models, and extract meaningful insights.</p>
+                        <h4 class="text-xl font-semibold mb-3">Data Science</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Learn to analyze data, build predictive models, and extract meaningful insights.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>12 Weeks</span>
+                        </div>
                     </div>
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">Full Stack Web Dev</h4>
+                         <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-purple-500/20 to-pink-500/20 rounded-lg">
+                                <span class="text-2xl">🌐</span>
+                            </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Become a complete web developer, skilled in both front-end and back-end technologies.</p>
+                        <h4 class="text-xl font-semibold mb-3">Full Stack Web Dev</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Become a complete web developer, skilled in both front-end and back-end technologies.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>16 Weeks</span>
+                        </div>
                     </div>
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">Digital Marketing</h4>
+                         <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-yellow-500/20 to-orange-500/20 rounded-lg">
+                                <span class="text-2xl">📱</span>
+                            </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Understand the strategies to grow and engage audiences in the digital landscape.</p>
+                        <h4 class="text-xl font-semibold mb-3">Digital Marketing</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Understand the strategies to grow and engage audiences in the digital landscape.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>6 Weeks</span>
+                        </div>
                     </div>
                     <div class="course-card card-style p-6 rounded-xl text-left bg-white dark:bg-gray-900/50 border border-slate-200 dark:border-gray-800 transition duration-300">
-                         <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-xl font-semibold">Aptitude & Reasoning</h4>
+                         <div class="flex items-center justify-between mb-4">
+                            <div class="p-2 bg-gradient-to-br from-indigo-500/20 to-blue-500/20 rounded-lg">
+                                <span class="text-2xl">🧠</span>
+                            </div>
                         </div>
-                        <p class="text-slate-600 dark:text-slate-400 text-sm">Sharpen your logical and analytical skills to excel in competitive exams and interviews.</p>
+                        <h4 class="text-xl font-semibold mb-3">Aptitude & Reasoning</h4>
+                        <p class="text-slate-600 dark:text-slate-400 text-sm mb-4">Sharpen your logical and analytical skills to excel in competitive exams and interviews.</p>
+                        <div class="flex items-center text-sm text-slate-500">
+                            <i data-lucide="clock" class="w-4 h-4 mr-2"></i>
+                            <span>4 Weeks</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -152,33 +232,51 @@
         <!-- Testimonials Section -->
         <section id="testimonials" class="py-20">
             <div class="container mx-auto px-6 text-center fade-in-section">
-                <h3 class="text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h3>
-                <p class="text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto">Success stories from the amazing students we've had the pleasure to teach.</p>
+                <div class="mb-12">
+                    <h3 class="text-3xl md:text-4xl font-bold mb-4">What Our Students Say</h3>
+                    <div class="section-divider"></div>
+                    <p class="text-slate-600 dark:text-slate-400 max-w-2xl mx-auto">Success stories from the amazing students we've had the pleasure to teach.</p>
+                </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 text-left">
-                    <div class="p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
-                        <p class="mb-6 italic">"The Full Stack course was incredible. The hands-on projects gave me the confidence to build my own applications and land a fantastic job."</p>
+                    <div class="testimonial-card p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-2">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                            <p class="italic text-slate-700 dark:text-slate-300">"The Full Stack course was incredible. The hands-on projects gave me the confidence to build my own applications and land a fantastic job."</p>
+                        </div>
                         <div class="flex items-center">
-                            <img src="https://placehold.co/48x48/f1f5f9/334155?text=A" alt="Student 1" class="w-12 h-12 rounded-full mr-4">
+                            <div class="w-12 h-12 rounded-full mr-4 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center text-white font-bold">A</div>
                             <div>
                                 <h5 class="font-semibold">Anjali Sharma</h5>
                                 <p class="text-sm text-slate-500 dark:text-slate-400">Software Engineer at Company A</p>
                             </div>
                         </div>
                     </div>
-                    <div class="p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
-                        <p class="mb-6 italic">"I came with zero knowledge of data science. The instructors were patient and the curriculum was perfectly paced. Highly recommend Vigyam!"</p>
+                    <div class="testimonial-card p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-2">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                            <p class="italic text-slate-700 dark:text-slate-300">"I came with zero knowledge of data science. The instructors were patient and the curriculum was perfectly paced. Highly recommend Vigyam!"</p>
+                        </div>
                         <div class="flex items-center">
-                            <img src="https://placehold.co/48x48/f1f5f9/334155?text=R" alt="Student 2" class="w-12 h-12 rounded-full mr-4">
+                            <div class="w-12 h-12 rounded-full mr-4 bg-gradient-to-br from-blue-500 to-cyan-500 flex items-center justify-center text-white font-bold">R</div>
                             <div>
                                 <h5 class="font-semibold">Rohan Verma</h5>
                                 <p class="text-sm text-slate-500 dark:text-slate-400">Data Analyst at Company B</p>
                             </div>
                         </div>
                     </div>
-                     <div class="p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
-                        <p class="mb-6 italic">"The placement support is top-notch. They helped me with my resume, conducted mock interviews, and connected me with great companies."</p>
+                     <div class="testimonial-card p-8 rounded-xl bg-white dark:bg-gray-800/50 border border-slate-200 dark:border-gray-800">
+                        <div class="mb-6">
+                            <div class="flex text-yellow-400 mb-2">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                            <p class="italic text-slate-700 dark:text-slate-300">"The placement support is top-notch. They helped me with my resume, conducted mock interviews, and connected me with great companies."</p>
+                        </div>
                         <div class="flex items-center">
-                            <img src="https://placehold.co/48x48/f1f5f9/334155?text=P" alt="Student 3" class="w-12 h-12 rounded-full mr-4">
+                            <div class="w-12 h-12 rounded-full mr-4 bg-gradient-to-br from-green-500 to-emerald-500 flex items-center justify-center text-white font-bold">P</div>
                             <div>
                                 <h5 class="font-semibold">Priya Singh</h5>
                                 <p class="text-sm text-slate-500 dark:text-slate-400">Marketing Associate at Company C</p>
@@ -268,29 +366,98 @@
         <!-- Contact Section -->
         <section id="contact" class="py-20">
             <div class="container mx-auto px-6 fade-in-section">
-                <div class="max-w-3xl mx-auto text-center">
-                    <h3 class="text-3xl md:text-4xl font-bold mb-4">Let's Get in Touch</h3>
-                    <p class="text-slate-600 dark:text-slate-400 mb-8">Have a question or want to enroll? We'd love to hear from you.</p>
+                <div class="max-w-4xl mx-auto">
+                    <div class="text-center mb-12">
+                        <h3 class="text-3xl md:text-4xl font-bold mb-4">Let's Get in Touch</h3>
+                        <p class="text-slate-600 dark:text-slate-400">Have a question or want to enroll? We'd love to hear from you.</p>
+                    </div>
 
-                    <form id="contact-form" class="text-left space-y-6">
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                        <!-- Contact Information -->
+                        <div class="space-y-6">
+                            <h4 class="text-2xl font-semibold mb-6">Contact Information</h4>
+                            
+                            <div class="space-y-4">
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-orange-500/10 rounded-lg">
+                                        <i data-lucide="map-pin" class="text-orange-500 w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-1">Address</h5>
+                                        <p class="text-slate-600 dark:text-slate-400">
+                                            House No. C-44,<br>
+                                            Crescent Residency, Sehore,<br>
+                                            Madhya Pradesh - 466001
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-orange-500/10 rounded-lg">
+                                        <i data-lucide="phone" class="text-orange-500 w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-1">Phone</h5>
+                                        <p class="text-slate-600 dark:text-slate-400">
+                                            <a href="tel:+919862787401" class="hover:text-orange-500 transition">+91 9862787401</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-orange-500/10 rounded-lg">
+                                        <i data-lucide="mail" class="text-orange-500 w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-1">Email</h5>
+                                        <p class="text-slate-600 dark:text-slate-400">
+                                            <a href="mailto:vigyamgbk@gmail.com" class="hover:text-orange-500 transition">vigyamgbk@gmail.com</a>
+                                        </p>
+                                    </div>
+                                </div>
+
+                                <div class="flex items-start space-x-4">
+                                    <div class="p-3 bg-orange-500/10 rounded-lg">
+                                        <i data-lucide="globe" class="text-orange-500 w-6 h-6"></i>
+                                    </div>
+                                    <div>
+                                        <h5 class="font-semibold mb-1">Website</h5>
+                                        <p class="text-slate-600 dark:text-slate-400">
+                                            <a href="https://www.vigyamgbk.co.in" target="_blank" rel="noopener noreferrer" class="hover:text-orange-500 transition">www.vigyamgbk.co.in</a>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Form -->
                         <div>
-                            <label for="name" class="block text-sm font-medium">Name</label>
-                            <input type="text" id="name" name="name" class="mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
+                            <h4 class="text-2xl font-semibold mb-6">Send us a Message</h4>
+                            <form id="contact-form" class="space-y-6">
+                                <div>
+                                    <label for="name" class="block text-sm font-medium mb-2">Name</label>
+                                    <input type="text" id="name" name="name" class="form-input mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
+                                </div>
+                                <div>
+                                    <label for="email" class="block text-sm font-medium mb-2">Email</label>
+                                    <input type="email" id="email" name="email" class="form-input mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
+                                </div>
+                                <div>
+                                    <label for="phone" class="block text-sm font-medium mb-2">Phone (Optional)</label>
+                                    <input type="tel" id="phone" name="phone" class="form-input mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm">
+                                </div>
+                                <div>
+                                    <label for="message" class="block text-sm font-medium mb-2">Message</label>
+                                    <textarea id="message" name="message" rows="4" class="form-input mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-lg shadow-sm py-3 px-4 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required></textarea>
+                                </div>
+                                <div>
+                                    <button type="submit" class="btn-primary w-full text-white font-semibold px-8 py-4 rounded-lg text-lg">
+                                        Send Message
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <div>
-                            <label for="email" class="block text-sm font-medium">Email</label>
-                            <input type="email" id="email" name="email" class="mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required>
-                        </div>
-                        <div>
-                            <label for="message" class="block text-sm font-medium">Message</label>
-                            <textarea id="message" name="message" rows="4" class="mt-1 block w-full bg-slate-50 dark:bg-gray-800 border border-slate-300 dark:border-gray-700 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-orange-500 focus:border-orange-500 sm:text-sm" required></textarea>
-                        </div>
-                        <div class="text-right">
-                             <button type="submit" class="bg-orange-500 text-white font-semibold px-8 py-3 rounded-lg hover:bg-orange-600 transition">
-                                Send Message
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>
@@ -303,6 +470,12 @@
                 <div class="col-span-1 md:col-span-2">
                     <h3 class="text-xl font-bold">Vigy<span class="text-orange-500">am</span></h3>
                     <p class="mt-2 text-slate-500 dark:text-slate-400 max-w-sm">Empowering the next generation of tech leaders through quality education and hands-on training.</p>
+                    <div class="mt-4 space-y-2 text-sm text-slate-500 dark:text-slate-400">
+                        <p><i data-lucide="map-pin" class="inline w-4 h-4 mr-2"></i>House No. C-44, Crescent Residency, Sehore, MP - 466001</p>
+                        <p><i data-lucide="phone" class="inline w-4 h-4 mr-2"></i><a href="tel:+919862787401" class="hover:text-orange-500 transition">+91 9862787401</a></p>
+                        <p><i data-lucide="mail" class="inline w-4 h-4 mr-2"></i><a href="mailto:vigyamgbk@gmail.com" class="hover:text-orange-500 transition">vigyamgbk@gmail.com</a></p>
+                        <p><i data-lucide="globe" class="inline w-4 h-4 mr-2"></i><a href="https://www.vigyamgbk.co.in" target="_blank" rel="noopener noreferrer" class="hover:text-orange-500 transition">www.vigyamgbk.co.in</a></p>
+                    </div>
                 </div>
                 <div>
                     <h4 class="font-semibold">Quick Links</h4>
@@ -314,16 +487,25 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold">Follow Us</h4>
-                    <div class="flex mt-4 space-x-4">
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-orange-500"><i data-lucide="twitter"></i></a>
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-orange-500"><i data-lucide="linkedin"></i></a>
-                        <a href="#" class="text-slate-500 dark:text-slate-400 hover:text-orange-500"><i data-lucide="instagram"></i></a>
+                    <h4 class="font-semibold">Connect With Us</h4>
+                    <div class="mt-4 space-y-3">
+                        <a href="mailto:vigyamgbk@gmail.com" class="flex items-center text-slate-500 dark:text-slate-400 hover:text-orange-500 transition">
+                            <i data-lucide="mail" class="w-5 h-5 mr-2"></i>
+                            <span>Email Us</span>
+                        </a>
+                        <a href="tel:+919862787401" class="flex items-center text-slate-500 dark:text-slate-400 hover:text-orange-500 transition">
+                            <i data-lucide="phone" class="w-5 h-5 mr-2"></i>
+                            <span>Call Us</span>
+                        </a>
+                        <a href="https://www.vigyamgbk.co.in" target="_blank" rel="noopener noreferrer" class="flex items-center text-slate-500 dark:text-slate-400 hover:text-orange-500 transition">
+                            <i data-lucide="globe" class="w-5 h-5 mr-2"></i>
+                            <span>Visit Website</span>
+                        </a>
                     </div>
                 </div>
             </div>
             <div class="mt-8 pt-8 border-t border-slate-200 dark:border-gray-800 text-center text-sm text-slate-500 dark:text-slate-400">
-                <p>&copy; 2024 Vigyam. All Rights Reserved.</p>
+                <p>&copy; 2024 Vigyam. All Rights Reserved. | <a href="https://www.vigyamgbk.co.in" target="_blank" rel="noopener noreferrer" class="hover:text-orange-500 transition">www.vigyamgbk.co.in</a></p>
             </div>
         </div>
     </footer>
@@ -334,6 +516,18 @@
             darkMode: 'class',
         }
     </script>
+    <!-- WhatsApp Contact Button -->
+    <div class="fixed bottom-6 right-6 z-50">
+        <a href="https://wa.me/919862787401?text=Hi! I'm interested in Vigyam courses. Can you provide more information?" 
+           target="_blank" 
+           rel="noopener noreferrer"
+           class="whatsapp-button text-white p-4 rounded-full shadow-lg"
+           aria-label="Contact us on WhatsApp"
+           title="Contact us on WhatsApp">
+            <i data-lucide="message-circle" class="w-6 h-6"></i>
+        </a>
+    </div>
+
     <script src="script.js"></script>
 </body>
 </html>
