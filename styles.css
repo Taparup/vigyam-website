@@ -739,3 +739,52 @@ p { line-height: 1.7; }
 /* Ensure hero content sits above image */
 #home > .container { position: relative; z-index: 2; }
 
+/* Calm hypnotic motion: slow zoom and pan */
+.hero-calm-motion {
+  animation: calmZoomPan 45s ease-in-out infinite alternate;
+  transform-origin: center;
+}
+
+@keyframes calmZoomPan {
+  0%   { transform: scale(1) translate3d(0, 0, 0); }
+  50%  { transform: scale(1.06) translate3d(1.5%, -1.5%, 0); }
+  100% { transform: scale(1.1) translate3d(-1.5%, 1.5%, 0); }
+}
+
+/* Gentle gradient shimmer overlay for soothing effect */
+.hero-calm-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  background: radial-gradient(1200px 600px at 20% 30%, rgba(255, 153, 51, 0.08), transparent 60%),
+              radial-gradient(900px 500px at 80% 70%, rgba(59, 130, 246, 0.07), transparent 60%);
+  animation: calmShimmer 20s ease-in-out infinite alternate;
+}
+
+.dark .hero-calm-overlay {
+  background: radial-gradient(1200px 600px at 20% 30%, rgba(255, 153, 51, 0.06), transparent 60%),
+              radial-gradient(900px 500px at 80% 70%, rgba(139, 92, 246, 0.06), transparent 60%);
+}
+
+@keyframes calmShimmer {
+  0%   { opacity: 0.65; filter: blur(0px); }
+  50%  { opacity: 0.8;  filter: blur(0.5px); }
+  100% { opacity: 0.65; filter: blur(0px); }
+}
+
+/* Tone down matrix hue animation for peace */
+.matrix-animate {
+  animation-duration: 24s;
+}
+.dark .matrix-animate {
+  animation-duration: 24s;
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .hero-calm-motion,
+  .hero-calm-overlay,
+  .matrix-animate { animation: none !important; }
+}
+
