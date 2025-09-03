@@ -605,3 +605,58 @@ textarea:focus {
   background: linear-gradient(90deg, var(--primary-orange-light), var(--accent-purple));
 }
 
+/* Themed navbar surface with gradient + subtle texture */
+.nav-surface {
+  background: linear-gradient(135deg, rgba(255,255,255,0.65), rgba(255,255,255,0.45));
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+  background-size: 6px 6px;
+}
+
+.dark .nav-surface {
+  background: linear-gradient(135deg, rgba(17,24,39,0.75), rgba(17,24,39,0.55));
+  background-image: radial-gradient(rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
+/* Rounded sliding selector behind nav items */
+.nav-selector {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(59, 130, 246, 0.15));
+  box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08) inset, 0 2px 6px rgba(0,0,0,0.06);
+  transition: left 220ms cubic-bezier(0.4, 0, 0.2, 1), width 220ms cubic-bezier(0.4, 0, 0.2, 1), top 220ms cubic-bezier(0.4, 0, 0.2, 1), height 220ms cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+}
+
+.dark .nav-selector {
+  background: linear-gradient(135deg, rgba(249, 115, 22, 0.18), rgba(139, 92, 246, 0.18));
+  box-shadow: 0 8px 20px rgba(2,6,23,0.35) inset, 0 2px 10px rgba(0,0,0,0.25);
+}
+
+/* Ensure links render above selector */
+.nav-links > a {
+  position: relative;
+  z-index: 1;
+  padding: 0.5rem 0.75rem;
+  border-radius: 9999px;
+  transition: color 180ms ease, background-color 180ms ease;
+}
+
+/* Soft active color on hover */
+.nav-links > a:hover {
+  color: var(--primary-orange);
+}
+
+/* Sticky header shadow when scrolled */
+.header-stuck {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.08);
+}
+
+.dark .header-stuck {
+  box-shadow: 0 8px 30px rgba(0,0,0,0.35);
+}
+

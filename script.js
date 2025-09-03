@@ -205,22 +205,34 @@ function initLucideIcons() {
 
 // Sliding Nav Indicator
 function initNavIndicator() {
-    const nav = document.querySelector('header nav');
-    const indicator = document.getElementById('nav-indicator');
-    if (!nav || !indicator) return;
+    const nav = document.querySelector('header nav.nav-links');
+    const selector = document.getElementById('nav-selector');
+    if (!nav || !selector) return;
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
 
-    function setIndicatorToLink(link) {
-        const rect = link.getBoundingClientRect();
+    function setSelectorToLink(link) {
+        const linkRect = link.getBoundingClientRect();
         const navRect = nav.getBoundingClientRect();
-        indicator.style.left = (rect.left - navRect.left) + 'px';
-        indicator.style.width = rect.width + 'px';
+        const left = linkRect.left - navRect.left - 8; // padding compensation
+        const width = linkRect.width + 16; // pill padding
+        selector.style.left = left + 'px';
+        selector.style.width = width + 'px';
+        selector.style.display = 'block';
+        // vertically center
+        const top = (navRect.height / 2) - (selector.offsetHeight / 2);
+        selector.style.top = top + 'px';
+    }
+
+    // Initialize to first link
+    function initPosition() {
+        const active = links[0];
+        if (active) setSelectorToLink(active);
     }
 
     // Click handling
     links.forEach(link => {
         link.addEventListener('click', () => {
-            setTimeout(() => setIndicatorToLink(link), 50);
+            setTimeout(() => setSelectorToLink(link), 50);
         });
     });
 
@@ -236,19 +248,27 @@ function initNavIndicator() {
         if (visible) {
             const id = '#' + visible.target.id;
             const activeLink = links.find(l => l.getAttribute('href') === id);
-            if (activeLink) setIndicatorToLink(activeLink);
+            if (activeLink) setSelectorToLink(activeLink);
         }
-    }, { root: null, rootMargin: '-40% 0px -55% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
+    }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
 
     sections.forEach(sec => observer.observe(sec));
 
     // On load and resize
-    function initPosition() {
-        const current = links[0];
-        if (current) setIndicatorToLink(current);
-    }
     initPosition();
     window.addEventListener('resize', initPosition);
+}
+
+// Sticky header shadow for smoothness on scroll
+function initHeaderShadow() {
+    const header = document.querySelector('header');
+    if (!header) return;
+    const update = () => {
+        if (window.scrollY > 8) header.classList.add('header-stuck');
+        else header.classList.remove('header-stuck');
+    };
+    update();
+    window.addEventListener('scroll', update, { passive: true });
 }
 
 // Bubble animation generator
@@ -286,6 +306,7 @@ document.addEventListener('DOMContentLoaded', function() {
     initContactForm();
     initLucideIcons();
     initNavIndicator();
+    initHeaderShadow();
     initBubbles();
 });
 
