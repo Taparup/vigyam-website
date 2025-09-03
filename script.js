@@ -207,25 +207,33 @@ function initLucideIcons() {
 
 // Sliding Nav Indicator
 function initNavIndicator() {
-    if (window.matchMedia('(max-width: 767px)').matches) return; // skip on mobile
+    if (window.matchMedia('(max-width: 767px)').matches) return;
     const nav = document.querySelector('header nav.nav-links');
     const selector = document.getElementById('nav-selector');
     if (!nav || !selector) return;
     const links = Array.from(nav.querySelectorAll('a[href^="#"]'));
 
+    function getComputedNumber(el, prop) {
+        return parseFloat(window.getComputedStyle(el)[prop]) || 0;
+    }
+
     function setSelectorToLink(link) {
-        const pillPaddingX = 12; // horizontal breathing room
-        const linkLeft = link.offsetLeft;
-        const linkTop = link.offsetTop;
+        const pillPaddingX = 12; // add small breathing room
+        const navPaddingLeft = getComputedNumber(nav, 'paddingLeft');
+        const navPaddingTop = getComputedNumber(nav, 'paddingTop');
+        const linkMarginLeft = getComputedNumber(link, 'marginLeft');
+        const linkMarginTop = getComputedNumber(link, 'marginTop');
+        const linkLeft = link.offsetLeft + linkMarginLeft;
+        const linkTop = link.offsetTop + linkMarginTop;
         const linkWidth = link.offsetWidth;
         const linkHeight = link.offsetHeight;
-        const width = linkWidth + pillPaddingX;
         const left = linkLeft - pillPaddingX / 2;
-        // Match selector height to link height for perfect vertical alignment
-        selector.style.height = linkHeight + 'px';
+        const width = linkWidth + pillPaddingX;
+        const top = linkTop; // exact match
         selector.style.left = left + 'px';
         selector.style.width = width + 'px';
-        selector.style.top = linkTop + 'px';
+        selector.style.top = top + 'px';
+        selector.style.height = linkHeight + 'px';
         selector.style.display = 'block';
     }
 
@@ -234,16 +242,14 @@ function initNavIndicator() {
         if (active) setSelectorToLink(active);
     }
 
-    // Click handling
     links.forEach(link => {
         link.addEventListener('click', () => {
             links.forEach(l => l.classList.remove('active'));
             link.classList.add('active');
-            setTimeout(() => setSelectorToLink(link), 0);
+            requestAnimationFrame(() => setSelectorToLink(link));
         });
     });
 
-    // Scroll spy
     const sections = links.map(l => document.querySelector(l.getAttribute('href'))).filter(Boolean);
     const observer = new IntersectionObserver((entries) => {
         const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -253,13 +259,12 @@ function initNavIndicator() {
             if (activeLink) {
                 links.forEach(l => l.classList.remove('active'));
                 activeLink.classList.add('active');
-                setSelectorToLink(activeLink);
+                requestAnimationFrame(() => setSelectorToLink(activeLink));
             }
         }
     }, { root: null, rootMargin: '-45% 0px -50% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] });
     sections.forEach(sec => observer.observe(sec));
 
-    // Initialize and keep in sync on resize
     initPosition();
     let resizeTimeout;
     window.addEventListener('resize', () => {
@@ -271,7 +276,7 @@ function initNavIndicator() {
             }
             const active = links.find(l => l.classList.contains('active')) || links[0];
             if (active) setSelectorToLink(active);
-        }, 100);
+        }, 80);
     });
 }
 

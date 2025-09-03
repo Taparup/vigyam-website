@@ -622,8 +622,7 @@ textarea:focus {
 /* Rounded sliding selector behind nav items */
 .nav-selector {
   position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  /* JS sets exact top based on link position */
   height: auto;
   border-radius: 9999px;
   background: linear-gradient(135deg, rgba(249, 115, 22, 0.15), rgba(59, 130, 246, 0.15));
